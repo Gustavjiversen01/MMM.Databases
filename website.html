@@ -2,12 +2,32 @@
 <html>
 <head>
     <title>Mood Predictor</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            text-align: center;
+        }
+        textarea {
+            display: block;
+            margin: 0 auto;
+            width: 50%;
+        }
+    </style>
 </head>
 <body>
-    <h1>How was your day?</h1>
     <form id="mood-form">
+        <h1>How was your day?</h1>
         <textarea id="prompt-input" placeholder="Enter your statement here..." maxlength="280"></textarea>
         <button type="submit">Submit</button>
     </form>
 </body>
 </html>
+
