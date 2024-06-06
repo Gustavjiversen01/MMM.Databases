@@ -28,6 +28,24 @@
         <textarea id="prompt-input" placeholder="Enter your statement here..." maxlength="280"></textarea>
         <button type="submit">Submit</button>
     </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('mood-form').onsubmit = async function(e) {
+            e.preventDefault();
+            const text = document.getElementById('prompt-input').value;
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({ 'text': text })
+            });
+            const result = await response.json();
+            document.getElementById('result').innerText = 'Detected Emotion: ' + result.emotion;
+        }
+    </script>
 </body>
 </html>
+
 
