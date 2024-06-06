@@ -2,11 +2,9 @@ pandas
 numpy
 seaborn
 matplotlib
-re
 tensorflow
-warnings
 nltk
-collections
 keras
-sklearn
-pickle
+scikit-learn
+Flask
+pymysql
