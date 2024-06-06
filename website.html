@@ -42,10 +42,14 @@
                 body: new URLSearchParams({ 'text': text })
             });
             const result = await response.json();
-            document.getElementById('result').innerText = 'Detected Emotion: ' + result.emotion;
+            document.getElementById('result').innerHTML = `
+                <h2>Recommended Movie</h2>
+                <p><strong>Title:</strong> ${result.title}</p>
+                <p><strong>Reason:</strong> ${result.reason}</p>
+                <p><strong>Description:</strong> ${result.description}</p>
+                <p><strong>IMDB Rating:</strong> ${result.imdb_rating}</p>
+            `;
         }
     </script>
 </body>
 </html>
-
-
