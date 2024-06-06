@@ -1,5 +1,6 @@
 import numpy as np
-import pymysql
+import psycopg2
+import logging
 from flask import Flask, request, jsonify, render_template
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -7,35 +8,44 @@ import pickle
 
 app = Flask(__name__)
 
+# Setup logging
+logging.basicConfig(level=logging.DEBUG)
+
 # Load pre-trained Bi-directional LSTM model
-model = load_model('saved_model/emotion_model2.keras')  # Adjust the path to your actual model file
+model = load_model('saved_model/emotion_model2.keras')  # Adjust the path to your actual model directory
+logging.info("Model loaded successfully")
 
 # Load the tokenizer
 with open('saved_model/tokenizer.pkl', 'rb') as f:
     tokenizer = pickle.load(f)
+logging.info("Tokenizer loaded successfully")
 
 # Load the label encoder
 with open('saved_model/label_encoder.pkl', 'rb') as f:
     label_encoder = pickle.load(f)
+logging.info("Label encoder loaded successfully")
 
 # Tokenizer parameters (adjust based on your training configuration)
 max_sequence_length = 79  # Use the same maxlen used during training
 
 # Predict emotion function
 def predict_emotion(sentence):
+    logging.debug(f"Predicting emotion for: {sentence}")
     sequences = tokenizer.texts_to_sequences([sentence])
     padded_sequences = pad_sequences(sequences, maxlen=max_sequence_length)
     prediction = model.predict(padded_sequences)
     emotion_id = np.argmax(prediction)
-    return emotion_id
+    logging.debug(f"Predicted emotion ID: {emotion_id}")
+    return int(emotion_id) + 1  # Convert to native Python integer and adjust for database ID
 
 # Database connection function
 def get_movies_by_emotion(emotion_id):
-    connection = pymysql.connect(
+    logging.debug(f"Fetching movies for emotion ID: {emotion_id}")
+    connection = psycopg2.connect(
         host='localhost',
-        user='your_username',
-        password='your_password',
-        database='MovieMatchMaker',
+        user='username',  # Ensure you have the correct credentials
+        password='password',  # Ensure you have the correct credentials
+        database='moviematchmaker',
     )
 
     try:
@@ -43,7 +53,10 @@ def get_movies_by_emotion(emotion_id):
             sql_query = "SELECT title, reason, description, imdb_rating FROM Movies WHERE emotion_id = %s"
             cursor.execute(sql_query, (emotion_id,))
             result = cursor.fetchone()  # Fetch one movie
+            logging.debug(f"Query result: {result}")
             return result
+    except Exception as e:
+        logging.error(f"Database query failed: {e}")
     finally:
         connection.close()
 
@@ -56,6 +69,7 @@ def index():
 @app.route('/predict', methods=['POST'])
 def predict():
     text = request.form['text']
+    logging.info(f"Received text: {text}")
     emotion_id = predict_emotion(text)
     movie = get_movies_by_emotion(emotion_id)
     if movie:
