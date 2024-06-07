@@ -76,7 +76,7 @@ def search_movies(query):
 
     try:
         with connection.cursor() as cursor:
-            sql_query = "SELECT title, reason, description, imdb_rating FROM Movies WHERE title ~* %s OR description ~* %s"
+            sql_query = "SELECT title, description, imdb_rating FROM Movies WHERE title ~* %s OR description ~* %s"
             cursor.execute(sql_query, (query, query))
             results = cursor.fetchall()
             logging.debug(f"Search results: {results}")
@@ -122,4 +122,3 @@ def search():
 # Main entry point
 if __name__ == '__main__':
     app.run(debug=True)
-
