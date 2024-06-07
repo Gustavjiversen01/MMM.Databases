@@ -5,6 +5,7 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -14,8 +15,9 @@
         }
         form {
             text-align: center;
+            margin-bottom: 20px;
         }
-        textarea {
+        textarea, input {
             display: block;
             margin: 0 auto;
             width: 50%;
@@ -27,6 +29,10 @@
         <h1>How was your day?</h1>
         <textarea id="prompt-input" placeholder="Enter your statement here..." maxlength="280"></textarea>
         <button type="submit">Submit</button>
+    </form>
+    <form id="search-form" action="/search" method="GET">
+        <input type="text" name="query" placeholder="Search for movies...">
+        <button type="submit">Search</button>
     </form>
     <div id="result"></div>
 

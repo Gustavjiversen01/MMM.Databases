@@ -45,7 +45,7 @@ def get_movies_by_emotion(emotion_id):
     connection = psycopg2.connect(
         host='localhost',
         user='postgres',  # Ensure you have the correct credentials
-        password='NewWorld12345',  # Ensure you have the correct credentials
+        password='Dqh75dba',  # Ensure you have the correct credentials
         database='moviematchmaker',
     )
 
@@ -59,6 +59,28 @@ def get_movies_by_emotion(emotion_id):
                 return random.choice(result)  # Randomly pick one movie
             else:
                 return None
+    except Exception as e:
+        logging.error(f"Database query failed: {e}")
+    finally:
+        connection.close()
+
+# Search movies function
+def search_movies(query):
+    logging.debug(f"Searching movies with query: {query}")
+    connection = psycopg2.connect(
+        host='localhost',
+        user='postgres',
+        password='Dqh75dba',
+        database='moviematchmaker',
+    )
+
+    try:
+        with connection.cursor() as cursor:
+            sql_query = "SELECT title, reason, description, imdb_rating FROM Movies WHERE title ~* %s OR description ~* %s"
+            cursor.execute(sql_query, (query, query))
+            results = cursor.fetchall()
+            logging.debug(f"Search results: {results}")
+            return results
     except Exception as e:
         logging.error(f"Database query failed: {e}")
     finally:
@@ -88,6 +110,14 @@ def predict():
             'error': 'No movie found for the detected emotion.'
         }
     return jsonify(response)
+
+# Flask route to handle search functionality
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+    logging.info(f"Search query: {query}")
+    results = search_movies(query)
+    return render_template('search_results.html', query=query, results=results)
 
 # Main entry point
 if __name__ == '__main__':
