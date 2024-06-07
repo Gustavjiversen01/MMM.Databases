@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mood Predictor</title>
+    <title>Mood Movie Matcher</title>
     <style>
         body {
             display: flex;
@@ -10,8 +10,13 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f8f8f8;
+            background-color: #000;
+            color: #fff;
             font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
         }
         form {
             text-align: center;
@@ -19,14 +24,43 @@
         }
         textarea, input {
             display: block;
-            margin: 0 auto;
-            width: 50%;
+            margin: 10px auto;
+            width: 80%;
+            max-width: 500px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        textarea {
+            height: 100px;
+        }
+        button {
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff4500;
+        }
+        #result {
+            text-align: center;
+            margin-top: 20px;
+        }
+        #result h2 {
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
+    <h1>Mood Movie Matcher</h1>
     <form id="mood-form">
-        <h1>How was your day?</h1>
+        <h2>How was your day?</h2>
         <textarea id="prompt-input" placeholder="Enter your statement here..." maxlength="280"></textarea>
         <button type="submit">Submit</button>
     </form>
