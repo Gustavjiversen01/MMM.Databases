@@ -9,3 +9,4 @@ scikit-learn
 Flask
 pymysql
 psycopg2-binary
+random
