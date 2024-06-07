@@ -16,7 +16,14 @@
         }
         h1 {
             font-size: 3em;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+        p.description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
         }
         form {
             text-align: center;
@@ -31,6 +38,11 @@
             border: none;
             border-radius: 5px;
             font-size: 1em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: box-shadow 0.3s;
+        }
+        textarea:focus, input:focus {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
         }
         textarea {
             height: 100px;
@@ -59,6 +71,7 @@
 </head>
 <body>
     <h1>Mood Movie Matcher</h1>
+    <p class="description">Discover the perfect movie to match your mood! Our Mood Movie Matcher uses advanced AI to analyze your emotions based on your input and recommends a movie that perfectly suits how you're feeling. Whether you're happy, sad, in love, or just in need of a good laugh, we've got you covered.</p>
     <form id="mood-form">
         <h2>How was your day?</h2>
         <textarea id="prompt-input" placeholder="Enter your statement here..." maxlength="280"></textarea>
@@ -97,4 +110,3 @@
     </script>
 </body>
 </html>
-
