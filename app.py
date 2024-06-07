@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, render_template
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
+import random
 
 app = Flask(__name__)
 
@@ -43,8 +44,8 @@ def get_movies_by_emotion(emotion_id):
     logging.debug(f"Fetching movies for emotion ID: {emotion_id}")
     connection = psycopg2.connect(
         host='localhost',
-        user='username',  # Ensure you have the correct credentials
-        password='password',  # Ensure you have the correct credentials
+        user='postgres',  # Ensure you have the correct credentials
+        password='NewWorld12345',  # Ensure you have the correct credentials
         database='moviematchmaker',
     )
 
@@ -52,9 +53,12 @@ def get_movies_by_emotion(emotion_id):
         with connection.cursor() as cursor:
             sql_query = "SELECT title, reason, description, imdb_rating FROM Movies WHERE emotion_id = %s"
             cursor.execute(sql_query, (emotion_id,))
-            result = cursor.fetchone()  # Fetch one movie
+            result = cursor.fetchall()  # Fetch all movies
             logging.debug(f"Query result: {result}")
-            return result
+            if result:
+                return random.choice(result)  # Randomly pick one movie
+            else:
+                return None
     except Exception as e:
         logging.error(f"Database query failed: {e}")
     finally:
