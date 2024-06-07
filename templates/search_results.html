@@ -6,16 +6,24 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             margin: 0;
-            background-color: #f8f8f8;
+            background-color: #000;
+            color: #fff;
             font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 2em;
+            margin-top: 20px;
         }
         table {
             width: 80%;
             margin-top: 20px;
             border-collapse: collapse;
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            overflow: hidden;
         }
         th, td {
             padding: 10px;
@@ -24,9 +32,30 @@
         th {
             background-color: #f4f4f4;
         }
+        td {
+            background-color: #fff;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #ff4500;
+        }
     </style>
 </head>
 <body>
+    <a href="/" class="back-button">Back</a>
     <h1>Search Results for "{{ query }}"</h1>
     <table>
         <thead>
@@ -50,4 +79,3 @@
     </table>
 </body>
 </html>
-
