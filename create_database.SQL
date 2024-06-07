@@ -105,3 +105,4 @@ INSERT INTO Movies (title, reason, description, imdb_rating, emotion_id) VALUES
 ('Ocean’s Eleven', 'A stylish and clever heist film full of surprises.', 'Danny Ocean and his eleven accomplices plan to rob three Las Vegas casinos simultaneously.', 7.7, 6),
 ('The Prestige', 'A film about magicians with a twisty and surprising plot.', 'Rival magicians compete to create the ultimate stage illusion.', 8.5, 6),
 ('Get Out', 'A horror-thriller with surprising twists and social commentary.', 'A young African-American visits his white girlfriend’s parents for the weekend, where his simmering uneasiness about their reception of him eventually reaches a boiling point.', 7.7, 6);
+
