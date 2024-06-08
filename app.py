@@ -44,9 +44,9 @@ def get_movies_by_emotion(emotion_id):
     logging.debug(f"Fetching movies for emotion ID: {emotion_id}")
     connection = psycopg2.connect(
         host='localhost',
-        user='postgres',  # Ensure you have the correct credentials
-        password='Dqh75dba',  # Ensure you have the correct credentials
-        database='moviematchmaker',
+        user='your_username',  # Ensure you have the correct credentials
+        password='your_password',  # Ensure you have the correct credentials
+        database='your_database_name',
     )
 
     try:
@@ -69,9 +69,9 @@ def search_movies(query):
     logging.debug(f"Searching movies with query: {query}")
     connection = psycopg2.connect(
         host='localhost',
-        user='postgres',
-        password='Dqh75dba',
-        database='moviematchmaker',
+        user='your_username',  # Ensure you have the correct credentials
+        password='your_password',  # Ensure you have the correct credentials
+        database='your_database_name',
     )
 
     try:
