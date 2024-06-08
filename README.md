@@ -1,17 +1,19 @@
-# running dis-nft-project:
+# running dis-MMM-project:
 
 Assumes a working Python 3 installation (with python=python3 and pip=pip3).
 
-(1) Run the code below to install the dependencies.
+(1) Navigate to your MMM.databases folder and open it in visual studio code. 
+
+(2) Navigate to the MMM.databases folder in the terminal and run the code below to install the dependencies.
 >$ pip install -r requirements.txt
 
-(2) Initialize the database, by running the SQL files (Creating the necessary tables).
-    by pasting it into your Pgadmin 4 Query Tool in our database.
+(3) Initialize the database, by running the SQL files (Creating the necessary tables).
+    by pasting it into your Pgadmin 4 Query Tool in a new database.
 
-(3)Configure the database connection
+(4)Configure the database connection
     In the app.py file, set your own database username and password in the get_movies_by_emotion and search_movies functions:
 
-(4) Run Web-App
+(5) Run Web-App
 >$ python app.py
 
 

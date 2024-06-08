@@ -1,11 +1,3 @@
--- create_database.sql
-
--- Create the Database
-CREATE DATABASE moviematchmaker;
-
--- Connect to the Database
-\c moviematchmaker;
-
 -- Create Tables
 CREATE TABLE Emotions (
     emotion_id SERIAL PRIMARY KEY,
