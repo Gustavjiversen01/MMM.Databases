@@ -6,7 +6,7 @@ Assumes a working Python 3 installation (with python=python3 and pip=pip3).
 >$ pip install -r requirements.txt
 
 (2) Initialize the database, by running the SQL files (Creating the necessary tables).
-    by pasting it into your Pgadmin 4 Query Tool in our database.
+    by pasting it into your Pgadmin 4 Query Tool in your database.
 
 (3)Configure the database connection
     In the app.py file, set your own database username and password in the get_movies_by_emotion and search_movies functions:
