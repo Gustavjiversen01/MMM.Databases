@@ -9,6 +9,8 @@ Assumes a working Python 3 installation (with python=python3 and pip=pip3).
 
 (3) Initialize the database, by running the SQL files (Creating the necessary tables).
     by pasting it into your Pgadmin 4 Query Tool in a new database.
+    (If you have problems with premission, try this command: GRANT ALL PRIVILEGES ON DATABASE your_database TO your_username;)
+    (Replace your_database with your database and your_username with your username)
 
 (4)Configure the database connection
     In the app.py file, set your own database username and password in the get_movies_by_emotion and search_movies functions:
